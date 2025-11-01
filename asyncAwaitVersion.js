@@ -65,14 +65,25 @@ function waterGarden(name) {
     })
 }
 
-function doSummerChores(name) {
-    mowYard(name)
-        .then(() => weedEat(name))
-        .then(() => trimHedges(name))
-        .then(() => collectWood(name))
-        .then(() => waterGarden(name))
-        .then(() => console.log(`${name} finished all their chores!`))
-        .catch((error) => console.log(error));
+
+async function doSummerChores(name) {
+    try {
+        await mowYard(name);
+
+        await weedEat(name);
+
+        await trimHedges(name);
+
+        await collectWood(name);
+        
+        await waterGarden(name);
+
+        console.log(`${name} finished all their chores!`);
+    }
+    catch(error) {
+        console.log(error);
+    }
+
 }
 
 doSummerChores("Alice");
